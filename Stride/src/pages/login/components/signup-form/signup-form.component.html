@@ -1,13 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="createAccount()">
-  <tui-input class="tui-form__header_margin-bottom_small">
+  <tui-input formControlName="email" class="tui-form__header_margin-bottom_small">
     Email
     <input tuiTextfield type="email" placeholder="Enter your email"  />
   </tui-input>
-  <tui-input class="tui-form__header_margin-bottom_small">
+  <tui-input formControlName="password" class="tui-form__header_margin-bottom_small">
     Password
     <input tuiTextfield type="password" placeholder="Enter your password" />
   </tui-input>
-  <button tuiButton>
+  <button tuiButton type="submit">
     <span>Submit</span>
   </button>
 </form>

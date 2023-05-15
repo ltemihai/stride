@@ -21,11 +21,16 @@ export class SignupFormComponent {
 
   constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
               @Inject(POLYMORPHEUS_CONTEXT)
-              private readonly context: TuiDialogContext<boolean, number>,) {
+              private readonly context: TuiDialogContext<{
+                email: string,
+                password: string,
+              }>) {
   }
 
   createAccount() {
-    console.log('createAccount', this.form.value);
-    this.context.completeWith(true);
+    this.context.completeWith({
+      email: this.form.value.email,
+      password: this.form.value.password,
+    });
   }
 }

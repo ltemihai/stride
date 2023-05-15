@@ -9,6 +9,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TuiButtonModule, TuiDialogModule, TuiDialogService} from "@taiga-ui/core";
 import {SignupFormComponent} from "./components/signup-form/signup-form.component";
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -29,25 +30,36 @@ export class LoginComponent {
 
   constructor(
     private readonly dialogs: TuiDialogService,
+    private readonly userService: UserService,
     @Inject(Injector) private readonly injector: Injector,
   ) {
   }
 
   protected form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   })
 
 
   protected login() {
-    console.log('login', this.form.value);
+    this.userService.login(this.form.value.email!, this.form.value.password!)
+      .then((response) => console.log(response));
+  }
+
+  protected get() {
+    this.userService.getAccount().then((response) => console.log(response));
   }
 
   openSignupModal() {
-    this.dialogs.open<number>(
+    this.dialogs.open<{
+      email: string,
+      password: string,
+    }>(
       new PolymorpheusComponent(SignupFormComponent, this.injector)
     ).subscribe(x => {
-      console.log('dialog result', x);
+      console.log(x);
+      this.userService.signup(x.email, x.password)
+        .then((response) => console.log(response))
     });
   }
 }
