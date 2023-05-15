@@ -1,0 +1,23 @@
+<div class="page">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <tui-input formControlName="name" class="tui-row tui-form__header_margin-bottom_small">
+        Email
+        <input tuiTextfield />
+      </tui-input>
+      <tui-input formControlName="password" class="tui-row tui-form__header_margin-bottom_small">
+        Password
+        <input tuiTextfield type="password"/>
+      </tui-input>
+      <button
+        tuiButton
+        type="submit"
+        appearance="primary"
+        size="m"
+        shape="rounded"
+      >
+        Login
+      </button>
+      <h3 (click)="openSignupModal()">No account? Sign Up!</h3>
+    </form>
+</div>
+

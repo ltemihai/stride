@@ -1,0 +1,15 @@
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    min-width: 250px;
+    h3 {
+      text-align: center;
+    }
+  }
+
+}
