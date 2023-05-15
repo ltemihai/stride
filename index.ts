@@ -18,14 +18,23 @@ import express from "express";
 import dotenv from "dotenv";
 import {userApi} from "./api/user/user-api";
 import {generateAppwriteClient} from "./client/client";
+import {generateSwagger} from "./api/swagger/swagger";
+import bodyParser from "body-parser";
 
 dotenv.config({path: 'config.env'});
 
 const app = express();
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
 const port = process.env.PORT;
 
 const appwriteClient = generateAppwriteClient();
 
+generateSwagger(app);
 userApi(app, appwriteClient);
 
 app.listen(port, () => {
