@@ -1,1 +1,1 @@
-# appwrite-test
+# appwrite-index
