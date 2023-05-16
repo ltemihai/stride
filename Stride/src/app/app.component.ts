@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import {UserService} from "../services/user.service";
-import {Router} from "@angular/router";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +8,6 @@ import {Router} from "@angular/router";
 export class AppComponent {
   title = 'Stride';
 
-  constructor(private userService: UserService, private router: Router) {
-    this.userService.getAccount()
-      .then(() => { this.router.navigate(['/home']).then() })
-      .catch(() => { this.router.navigate(['/login']).then() })
+  constructor() {
   }
 }
