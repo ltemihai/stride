@@ -1,0 +1,23 @@
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 0.5rem;
+}
+
+tui-marker-icon {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.icon-with-label {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.is-active {
+  tui-marker-icon {
+    color: blue;
+  }
+}
