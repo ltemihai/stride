@@ -1,3 +1,7 @@
 <tui-root>
+  <button class="menu-button" (click)="onShowMenu()" *ngIf="isLoggedIn" aria-label="menu">
+    Test
+  </button>
+  <app-sidebar [@slideInOut]="menuState" *ngIf="isLoggedIn"></app-sidebar>
   <router-outlet></router-outlet>
 </tui-root>

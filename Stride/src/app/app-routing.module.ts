@@ -11,6 +11,11 @@ const routes: Routes = [
     path: 'home',
     loadComponent: () => import('../pages/home/home.component').then(m => m.HomeComponent),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'matches',
+    loadComponent: () => import('../pages/matches/matches.component').then(m => m.MatchesComponent),
+    canActivate: [AuthGuard],
   }
 ];
 

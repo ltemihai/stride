@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {UserService} from "../../services/user.service";
 import {Models} from "appwrite";
 import {MatchesService} from "../../services/matches.service";
-import Preferences = Models.Preferences;
 
 @Component({
   selector: 'app-matches',

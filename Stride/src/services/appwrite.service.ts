@@ -12,6 +12,8 @@ export class AppwriteService {
   public functions: Functions;
   public databases: Databases;
 
+  public jwt = '';
+
   constructor() {
     this.client = new Client();
     this.client
@@ -19,13 +21,21 @@ export class AppwriteService {
       .setProject('6460e9cb8628f9511c24')
 
     this.account = new Account(this.client);
-    this.account.getSession('current').then((response) => {
-      this.isUserAuthorized = response.current;
-    }, (_) => {
-      this.isUserAuthorized = false;
-    });
+    if(localStorage.getItem('isCurrentSession') === 'true') {
+      this.isUserAuthorized = true;
+    } else {
+      this.account.getSession('current').then((response) => {
+        localStorage.setItem('isCurrentSession', JSON.stringify(response.current));
+        this.isUserAuthorized = response.current;
+      }, (_) => {
+        this.isUserAuthorized = false;
+      });
+    }
 
     this.functions = new Functions(this.client);
     this.databases = new Databases(this.client);
+    this.account.createJWT().then((response) => {
+      this.jwt = response.jwt;
+    })
   }
 }

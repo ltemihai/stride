@@ -6,19 +6,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {SidebarComponent} from "../components/sidebar/sidebar.component";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-      BrowserAnimationsModule,
-      TuiRootModule,
-      TuiDialogModule,
-      TuiAlertModule
-],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        TuiRootModule,
+        TuiDialogModule,
+        TuiAlertModule,
+        SidebarComponent
+    ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
