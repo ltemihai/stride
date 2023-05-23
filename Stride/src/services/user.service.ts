@@ -30,7 +30,6 @@ export class UserService {
 
   public updatePreferences(preferences: Preferences) {
     const account = new Account(this.client);
-    console.log(this.user);
     this.appwriteService.databases.updateDocument(
       '64666d1e831778f95d38',
       '646a7e95ea7d2f174e2f',

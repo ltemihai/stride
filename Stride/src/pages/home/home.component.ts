@@ -16,12 +16,17 @@ import {AppwriteService} from "../../services/appwrite.service";
 })
 export class HomeComponent implements OnInit {
 
+  public isLoaded = false;
+
   protected potentialMatches: {
     avatarUrl: string,
     displayName: string,
     age: number,
     location: string,
-    id: string
+    id: string,
+    target: string,
+    longestRun: string,
+    currentPace: string,
   }[] = [];
 
   protected currentMatch: {
@@ -29,7 +34,10 @@ export class HomeComponent implements OnInit {
     displayName: string,
     age: number,
     location: string,
-    id: string
+    id: string,
+    target: string,
+    longestRun: string,
+    currentPace: string,
   } | null = null;
 
   constructor(private readonly userService: UserService,
@@ -56,19 +64,27 @@ export class HomeComponent implements OnInit {
             displayName: x["displayName"],
             age: x["birthday"],
             location: x["location"],
-            id: x.$id
+            id: x.$id,
+            target: x["target"],
+            longestRun: x["longestRun"],
+            currentPace: x["currentPace"],
           }
         });
-        this.currentMatch = this.potentialMatches[0];
+        this.currentMatch = this.potentialMatches.pop() || null;
+        this.isLoaded = true;
         this.cdr.detectChanges();
       }
       );
     });
   }
-  setMatch(matchId: string = '646276710b89412e917e', isMatch: boolean) {
+  setMatch(matchId: string, isMatch: boolean) {
     this.userService.getAccount().then((account) => {
       this.likesService.like(matchId, account['$id'], isMatch)
-        .then(() => this.alertService.success('It\'s a match!'))
+        .then(() => {
+          this.currentMatch = this.potentialMatches.pop() || null;
+          this.alertService.success('It\'s a match!');
+          this.cdr.detectChanges();
+        })
         .catch(() => this.alertService.error('Something went wrong!'))
     })
   }

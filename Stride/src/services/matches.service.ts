@@ -19,7 +19,6 @@ export class MatchesService {
 
   public getMatches() {
     this.userService.getAccount().then((account) => {
-      console.log(account);
       this.appwriteService.databases.listDocuments('64666d1e831778f95d38','64666fe04005f9c46714', [Query.equal('matcherId', account['$id'])]).then((response) => {
         this.matches.next(response.documents as any);
       });

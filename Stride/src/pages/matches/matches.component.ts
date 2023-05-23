@@ -24,7 +24,7 @@ export class MatchesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.matches = this.matchesService.matches.pipe(tap(x => console.log(x)));
+    this.matches = this.matchesService.matches
     this.matchesService.getMatches();
     this.matchesService.subscribeToMatchesEvents(() => {
       this.cdr.detectChanges()

@@ -1,12 +1,25 @@
 <div class="page">
-  <div class="body" *ngIf="currentMatch">
-    <img [src]="currentMatch.avatarUrl">
-    <div class="name">{{currentMatch.displayName}}</div>
-    <div class="age">{{currentMatch.age}}</div>
-    <div class="description">description</div>
-  </div>
-  <div class="footer">
-    <button tuiButton (click)="setMatch('646276710b89412e917e', true)">Like</button>
-    <button tuiButton (click)="setMatch('646276710b89412e917e', false)">Dislike</button>
-  </div>
+  <ng-container *ngIf="isLoaded">
+    <div class="body" *ngIf="currentMatch; else noMatchesAvailable">
+      <img [src]="currentMatch.avatarUrl">
+      <div class="row">
+        <h1 class="name">{{currentMatch.displayName}}</h1>
+        <h1 class="age">{{currentMatch.age}}</h1>
+      </div>
+      <h2>{{currentMatch.location}}</h2>
+      <h2>Target: {{currentMatch.target}}</h2>
+      <h2>Longest Run: {{currentMatch.longestRun}} km</h2>
+      <h2>Pace: {{currentMatch.currentPace}} min/km</h2>
+    </div>
+    <div >
+      <button tuiButton [disabled]="!currentMatch" (click)="setMatch(currentMatch?.id!, true)">Let's run!</button>
+      <button tuiButton [disabled]="!currentMatch" (click)="setMatch(currentMatch?.id!, false)">Naah! </button>
+    </div>
+  </ng-container>
 </div>
+
+<ng-template #noMatchesAvailable>
+  <div class="body">
+    <h3>No potential matches :( </h3>
+  </div>
+</ng-template>

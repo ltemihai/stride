@@ -35,7 +35,6 @@ export class AppComponent {
     this.isLoggedIn = this.appwriteService.isUserAuthorized;
     this.router.events.subscribe(() => {
       this.isLoggedIn = this.appwriteService.isUserAuthorized;
-      console.log(this.isLoggedIn);
     })
   }
 
