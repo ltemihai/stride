@@ -1,0 +1,23 @@
+tui-input {
+  padding-bottom: 1rem;
+  min-width: 300px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  flex-direction: column;
+  text-align: center;
+  h3 {
+    color: darkgrey;
+  }
+}
+
+tui-avatar {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  width: 10rem !important;
+  height: 10rem !important;
+}

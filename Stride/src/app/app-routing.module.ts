@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from "../guards/auth.guard";
+import {ProfileComponent} from "../pages/profile/profile.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path: 'matches',
     loadComponent: () => import('../pages/matches/matches.component').then(m => m.MatchesComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('../pages/profile/profile.component').then(m => m.ProfileComponent),
     canActivate: [AuthGuard],
   }
 ];

@@ -56,9 +56,18 @@ export class LoginComponent {
       new PolymorpheusComponent(SignupFormComponent, this.injector)
     ).subscribe(x => {
       this.appwriteService.account.create(ID.unique(), x.email, x.password)
-        .then(() => {
-          this.alertService.success('Signed up successfully!')
-          this.login(x.email, x.password);
+        .then((response) => {
+          this.appwriteService.databases.createDocument(
+            '64666d1e831778f95d38',
+            '646a7e95ea7d2f174e2f',
+            response.$id,
+            {
+              birthday: Date.now(),
+            }
+          ).then((_) => {
+            this.alertService.success('Signed up successfully!')
+            this.login(x.email, x.password);
+          })
         }, (_) => {
           this.alertService.error('Something went wrong!');
         })

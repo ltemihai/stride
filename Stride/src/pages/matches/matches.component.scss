@@ -1,4 +1,11 @@
 .page {
   display: flex;
   align-items: center;
+  flex-direction: column;
+}
+
+
+.item__content {
+  display: flex;
+  flex-direction: column;
 }

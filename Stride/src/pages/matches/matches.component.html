@@ -1,10 +1,8 @@
 <div class="page">
-  <div class="header">
-    <div>Matches</div>
-  </div>
-  <div class="body">
-    <div>Picture</div>
-  </div>
-  <div class="footer">
-  </div>
+    <div class="item__content" *ngFor="let item of matches | async; let indexOfelement=index;">
+      <div>{{indexOfelement}}</div>
+      <div class="item__title">{{ item.matchId }}</div>
+      <div class="item__subtitle">{{ item.matcherId }}</div>
+      <div class="item__description">{{ item.isLiked }}</div>
+    </div>
 </div>

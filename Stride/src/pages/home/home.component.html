@@ -1,9 +1,9 @@
 <div class="page">
-  <div class="header">
-    <div>img</div>
-  </div>
-  <div class="body">
-    <div>Picture</div>
+  <div class="body" *ngIf="currentMatch">
+    <img [src]="currentMatch.avatarUrl">
+    <div class="name">{{currentMatch.displayName}}</div>
+    <div class="age">{{currentMatch.age}}</div>
+    <div class="description">description</div>
   </div>
   <div class="footer">
     <button tuiButton (click)="setMatch('646276710b89412e917e', true)">Like</button>

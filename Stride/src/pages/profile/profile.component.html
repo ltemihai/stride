@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="saveUserPreferences()">
+
+  <tui-input-files formControlName="avatarUrl" *ngIf="!form.controls.avatarUrl.value" accept="image/*"  >
+  </tui-input-files>
+  <tui-avatar *ngIf="form.controls.avatarUrl.value" [avatarUrl]="img">
+  </tui-avatar>
+
+  <h1>Basic Info</h1>
+  <tui-input formControlName="displayName">
+    Display Name
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input formControlName="birthday">
+    Age
+    <input tuiTextfield type="number"/>
+  </tui-input>
+  <tui-input formControlName="location">
+    Location
+    <input tuiTextfield type="text"/>
+  </tui-input>
+
+  <h1>Running info</h1>
+  <tui-input formControlName="longestRun">
+    Longest Run (KM)
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input formControlName="currentPace">
+    Current Pace (min/KM)
+    <input tuiTextfield type="number"/>
+  </tui-input>
+  <tui-input formControlName="target">
+    What's your objective?
+    <input tuiTextfield type="text"/>
+  </tui-input>
+
+  <div class="buttons">
+    <button tuiButton type="submit">
+      Save profile
+    </button>
+    <h3 (click)="signOut()">Sign out</h3>
+  </div>
+
+</form>

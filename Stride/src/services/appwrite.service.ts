@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Account, Client, Databases, Functions} from "appwrite";
+import {Account, Client, Databases, Functions, Models, Storage} from "appwrite";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class AppwriteService {
   public account: Account;
   public functions: Functions;
   public databases: Databases;
+  public storage: Storage;
 
   public jwt = '';
 
@@ -37,5 +38,9 @@ export class AppwriteService {
     this.account.createJWT().then((response) => {
       this.jwt = response.jwt;
     })
+
+
+    this.storage = new Storage(this.client);
+
   }
 }
