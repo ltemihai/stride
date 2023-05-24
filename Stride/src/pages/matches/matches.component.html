@@ -1,8 +1,7 @@
 <div class="page">
-    <div class="item__content" *ngFor="let item of matches | async; let indexOfelement=index;">
-      <div>{{indexOfelement}}</div>
-      <div class="item__title">{{ item.matchId }}</div>
-      <div class="item__subtitle">{{ item.matcherId }}</div>
-      <div class="item__description">{{ item.isLiked }}</div>
+    <div class="item__content" *ngFor="let item of matches | async;">
+      <img [src]="item.avatarUrl" alt="avatarUrl" class="item__title">
+      <div class="item__subtitle">{{ item.displayName }}</div>
+      <div class="item__description">{{ item.birthday }}</div>
     </div>
 </div>

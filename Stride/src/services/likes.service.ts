@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {AppwriteService} from "./appwrite.service";
 import {Query} from "appwrite";
+import {
+  APPWRITE_COLLECTION_USER_PREFS_ID,
+  APPWRITE_DATABASE_ID,
+  APPWRITE_FUNCTION_LIKE_ID
+} from "../consts/appwrite.consts";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LikesService {
-
-  private readonly LIKE_FUNCTION_ID = '64667075564727c061da'
 
   constructor(private appwriteService: AppwriteService){
   }
@@ -15,14 +18,14 @@ export class LikesService {
   getPotentialMatches(accountId: string) {
     return this.appwriteService.databases
       .listDocuments(
-        '64666d1e831778f95d38',
-        '646a7e95ea7d2f174e2f',
+        APPWRITE_DATABASE_ID,
+        APPWRITE_COLLECTION_USER_PREFS_ID,
         [Query.notEqual('$id', accountId)]
       )
   }
 
   like(matchId: string, matcherId: string, isLiked: boolean) {
-    return this.appwriteService.functions.createExecution(this.LIKE_FUNCTION_ID, JSON.stringify({
+    return this.appwriteService.functions.createExecution(APPWRITE_FUNCTION_LIKE_ID, JSON.stringify({
       matchId: matchId,
       matcherId: matcherId,
       isLiked: isLiked,

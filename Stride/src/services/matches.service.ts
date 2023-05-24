@@ -1,16 +1,17 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ClientService} from "./client.service";
 import {Subject} from "rxjs";
 import {AppwriteService} from "./appwrite.service";
-import {Client, Models, Query} from "appwrite";
+import {Query} from "appwrite";
 import {UserService} from "./user.service";
+import {APPWRITE_COLLECTION_USER_PREFS_ID, APPWRITE_DATABASE_ID, APPWRITE_MATCHES_ID} from "../consts/appwrite.consts";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MatchesService {
 
-  matches: Subject<Document[]> = new Subject<Document[]>()
+  matches: Subject<any[]> = new Subject<any[]>()
   constructor(private clientService: ClientService,
               private userService: UserService,
               private appwriteService: AppwriteService) {
@@ -19,15 +20,32 @@ export class MatchesService {
 
   public getMatches() {
     this.userService.getAccount().then((account) => {
-      this.appwriteService.databases.listDocuments('64666d1e831778f95d38','64666fe04005f9c46714', [Query.equal('matcherId', account['$id'])]).then((response) => {
-        this.matches.next(response.documents as any);
+      this.appwriteService.databases.listDocuments(APPWRITE_DATABASE_ID,
+        APPWRITE_MATCHES_ID,
+        [Query.equal('matcherId', account['$id'])])
+        .then((response) => {
+          const matchesIds = response.documents.map(x => x['matchId']);
+          this.appwriteService.databases.listDocuments(
+            APPWRITE_DATABASE_ID,
+            APPWRITE_COLLECTION_USER_PREFS_ID,
+            [Query.equal('$id', matchesIds)]
+          ).then(users => {
+            this.matches.next(users.documents.map(user => {
+              return {
+                id: user['$id'],
+                displayName: user['displayName'],
+                avatarUrl: this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', user['avatarUrl']).href,
+                birthday: user['birthday']
+              }
+            }));
+          })
       });
     })
 
   }
 
-  public subscribeToMatchesEvents(callbackFn: any) {
-    this.clientService.client.subscribe('databases.64666d1e831778f95d38.collections.64666fe04005f9c46714.documents', (response) => {
+  public subscribeToMatchesEvents() {
+    this.clientService.client.subscribe(`databases.${APPWRITE_DATABASE_ID}.collections.${APPWRITE_MATCHES_ID}.documents`, (_) => {
       this.getMatches();
     });
   }

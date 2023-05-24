@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Account, Client, Databases, Functions, Models, Storage} from "appwrite";
+import {Account, Client, Databases, Functions, Storage} from "appwrite";
+import {APPWRITE_ENDPOINT, APPWRITE_PROJECT_ID} from "../consts/appwrite.consts";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class AppwriteService {
   constructor() {
     this.client = new Client();
     this.client
-      .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
-      .setProject('6460e9cb8628f9511c24')
+      .setEndpoint(APPWRITE_ENDPOINT) // Your API Endpoint
+      .setProject(APPWRITE_PROJECT_ID)
 
     this.account = new Account(this.client);
     if(localStorage.getItem('isCurrentSession') === 'true') {

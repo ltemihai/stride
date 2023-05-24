@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 import {AlertService} from "../../services/alert.service";
 import {AppwriteService} from "../../services/appwrite.service";
 import {ID} from "appwrite";
+import {APPWRITE_COLLECTION_USER_PREFS_ID, APPWRITE_DATABASE_ID} from "../../consts/appwrite.consts";
 
 @Component({
   selector: 'app-login',
@@ -58,8 +59,8 @@ export class LoginComponent {
       this.appwriteService.account.create(ID.unique(), x.email, x.password)
         .then((response) => {
           this.appwriteService.databases.createDocument(
-            '64666d1e831778f95d38',
-            '646a7e95ea7d2f174e2f',
+            APPWRITE_DATABASE_ID,
+            APPWRITE_COLLECTION_USER_PREFS_ID,
             response.$id,
             {
               birthday: Date.now(),

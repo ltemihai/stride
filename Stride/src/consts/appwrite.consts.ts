@@ -1,0 +1,7 @@
+export const APPWRITE_ENDPOINT = 'https://cloud.appwrite.io/v1';
+export const APPWRITE_PROJECT_ID = '6460e9cb8628f9511c24';
+export const APPWRITE_DATABASE_ID = '64666d1e831778f95d38'
+export const APPWRITE_COLLECTION_USER_PREFS_ID = '646a7e95ea7d2f174e2f'
+
+export const APPWRITE_FUNCTION_LIKE_ID = '64667075564727c061da'
+export const APPWRITE_MATCHES_ID = '64666fe04005f9c46714'

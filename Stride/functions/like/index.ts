@@ -1,4 +1,5 @@
 import {Client, Databases, ID} from "appwrite";
+import {APPWRITE_ENDPOINT, APPWRITE_PROJECT_ID} from "../../src/consts/appwrite.consts";
 
 const match = async (options: {
   matchId: string,
@@ -8,8 +9,8 @@ const match = async (options: {
   const client = new Client();
 
   client
-    .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
-    .setProject('6460e9cb8628f9511c24') //
+    .setEndpoint(APPWRITE_ENDPOINT) // Your API Endpoint
+    .setProject(APPWRITE_PROJECT_ID) //
 
   const database = new Databases(client);
   await database.createDocument(

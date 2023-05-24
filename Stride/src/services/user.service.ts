@@ -4,6 +4,7 @@ import {ClientService} from "./client.service";
 // @ts-ignore
 import Preferences = Models.Preferences;
 import {AppwriteService} from "./appwrite.service";
+import {APPWRITE_COLLECTION_USER_PREFS_ID, APPWRITE_DATABASE_ID} from "../consts/appwrite.consts";
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,9 @@ export class UserService {
   }
 
   public updatePreferences(preferences: Preferences) {
-    const account = new Account(this.client);
     this.appwriteService.databases.updateDocument(
-      '64666d1e831778f95d38',
-      '646a7e95ea7d2f174e2f',
+      APPWRITE_DATABASE_ID,
+      APPWRITE_COLLECTION_USER_PREFS_ID,
       this.user['$id'],
       {
         ...preferences,
@@ -43,8 +43,8 @@ export class UserService {
 
   public getUserPreferences()  {
     return this.appwriteService.databases.getDocument(
-      '64666d1e831778f95d38',
-      '646a7e95ea7d2f174e2f',
+      APPWRITE_DATABASE_ID,
+      APPWRITE_COLLECTION_USER_PREFS_ID,
       this.user['$id'],
     )
   }
