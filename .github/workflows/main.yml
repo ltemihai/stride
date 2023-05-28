@@ -2,27 +2,28 @@ name: CI / CD for Angular
 on:
   push:
     branches: [ "main" ]
-    jobs:
-      build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v3
 
-          - name: Set up node.js
-            uses: actions/setup-node@v3.3.0
-            with:
-              node-version: '18.10'
-              cache: 'npm'
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-          - name: Install dependencies
-            run: npm ci
-            
-          - name: Lint
-            run: npm run lint
+      - name: Set up node.js
+        uses: actions/setup-node@v3.3.0
+        with:
+          node-version: '18.10'
+          cache: 'npm'
 
-          - name: Tests
-            run: npm run test:prod
-            
-          - name: Build
-            run: npm run build:prod
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tests
+        run: npm run test:prod
+
+      - name: Build
+        run: npm run build:prod
