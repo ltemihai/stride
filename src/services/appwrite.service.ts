@@ -38,6 +38,8 @@ export class AppwriteService {
     this.databases = new Databases(this.client);
     this.account.createJWT().then((response) => {
       this.jwt = response.jwt;
+    }, (_) => {
+      console.log('Not logged in');
     })
 
 

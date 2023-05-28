@@ -1,9 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from "../guards/auth.guard";
-import {ProfileComponent} from "../pages/profile/profile.component";
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
   {
     path: 'login',
     loadComponent: () => import('../pages/login/login.component').then(m => m.LoginComponent)
@@ -22,7 +26,7 @@ const routes: Routes = [
     path: 'profile',
     loadComponent: () => import('../pages/profile/profile.component').then(m => m.ProfileComponent),
     canActivate: [AuthGuard],
-  }
+  },
 ];
 
 @NgModule({
