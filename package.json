@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@angular/service-worker": "^16.0.3",
     "@taiga-ui/cdk": "^3.26.0",
     "@taiga-ui/core": "^3.26.0",
     "@taiga-ui/icons": "^3.26.0",
