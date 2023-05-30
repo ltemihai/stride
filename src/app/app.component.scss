@@ -5,7 +5,8 @@
 }
 
 .content {
-  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
   max-height: calc(100vh - 10rem);
   overflow-y: scroll;
 }
