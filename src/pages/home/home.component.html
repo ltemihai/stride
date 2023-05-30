@@ -1,7 +1,10 @@
 <div class="page">
   <ng-container *ngIf="isLoaded">
     <div class="body" *ngIf="currentMatch; else noMatchesAvailable">
-      <img [src]="currentMatch.avatarUrl">
+      <div style="display: flex; justify-content: center; flex-direction: row">
+        <img [src]="currentMatch.avatarUrl" alt="avatarUrl">
+      </div>
+
       <div class="row">
         <h1 class="name">{{currentMatch.displayName}}</h1>
         <h1 class="age">{{currentMatch.age}}</h1>
