@@ -14,7 +14,7 @@
       <h2>Longest Run: {{currentMatch.longestRun}} km</h2>
       <h2>Pace: {{currentMatch.currentPace}} min/km</h2>
     </div>
-    <div class="actions">
+    <div class="actions" *ngIf="currentMatch">
       <div class="icon-with-label">
         <tui-marker-icon src="tuiIconCloseLarge" mode="error" (click)="setMatch(currentMatch?.id!, false)">
 
