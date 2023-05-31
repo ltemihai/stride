@@ -6,6 +6,11 @@ const match = async (options: {
   matcherId: string,
   isLiked: boolean,
 }) => {
+
+  const DATABASE_ID = '64627a4a87730c2c4fd1';
+  const MATCHES_COLLECTION_ID = '64627a793235eaf0d9f1';
+
+
   const client = new Client();
 
   client
@@ -14,8 +19,8 @@ const match = async (options: {
 
   const database = new Databases(client);
   await database.createDocument(
-    '64627a4a87730c2c4fd1',
-    '64627a793235eaf0d9f1',
+    DATABASE_ID,
+    MATCHES_COLLECTION_ID,
     ID.unique(),
     options
   )

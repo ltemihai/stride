@@ -83,7 +83,10 @@ export class HomeComponent implements OnInit {
       this.likesService.like(matchId, account['$id'], isMatch)
         .then(() => {
           this.currentMatch = this.potentialMatches.pop() || null;
-          this.alertService.success('It\'s a match!');
+          if (isMatch) {
+            this.alertService.success('It\'s a match!');
+          }
+
           this.cdr.detectChanges();
         })
         .catch(() => this.alertService.error('Something went wrong!'))

@@ -30,7 +30,7 @@ export class UserService {
   }
 
   public updatePreferences(preferences: Preferences) {
-    this.appwriteService.databases.updateDocument(
+    return this.appwriteService.databases.updateDocument(
       APPWRITE_DATABASE_ID,
       APPWRITE_COLLECTION_USER_PREFS_ID,
       this.user['$id'],

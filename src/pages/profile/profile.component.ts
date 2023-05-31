@@ -1,14 +1,15 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Form, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {ID, Models} from "appwrite";
-// @ts-ignore
-import Preferences = Models.Preferences;
 import {TuiAvatarModule, TuiFileLike, TuiInputFilesModule, TuiInputModule} from "@taiga-ui/kit";
 import {TuiButtonModule} from "@taiga-ui/core";
 import {AppwriteService} from "../../services/appwrite.service";
 import {Router} from "@angular/router";
+import {AlertService} from "../../services/alert.service";
+// @ts-ignore
+import Preferences = Models.Preferences;
 
 @Component({
   selector: 'app-profile',
@@ -38,6 +39,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
+              private alertService: AlertService,
               private appwriteService: AppwriteService) {
 
   }
@@ -50,6 +52,10 @@ export class ProfileComponent implements OnInit {
           this.userService.updatePreferences({
             ...this.form.value,
             avatarUrl: result.$id
+          }).then((_) => {
+            this.alertService.success(`You've successfully uploaded your photo!`)
+          }, (_) => {
+            this.alertService.error(`There was an error uploading your photo!`)
           });
         })
       });
@@ -57,7 +63,11 @@ export class ProfileComponent implements OnInit {
   }
 
   public saveUserPreferences() {
-    this.userService.updatePreferences(this.form.value);
+    this.userService.updatePreferences(this.form.value).then((_) => {
+      this.alertService.success(`You've successfully updated your profile!`)
+    }, (_) => {
+      this.alertService.error(`There was an error updating your profile!`)
+    });
   }
 
   public signOut() {
