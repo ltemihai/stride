@@ -1,4 +1,9 @@
 div {
   display: flex;
   justify-content: center;
+  tui-marker-icon {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
 }

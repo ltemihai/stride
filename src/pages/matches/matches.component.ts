@@ -21,7 +21,7 @@ export class MatchesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.matches = this.matchesService.matches
+    this.matches = this.matchesService.matches;
     this.matchesService.getMatches();
     this.matchesService.subscribeToMatchesEvents();
   }

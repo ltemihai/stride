@@ -14,9 +14,17 @@
       <h2>Longest Run: {{currentMatch.longestRun}} km</h2>
       <h2>Pace: {{currentMatch.currentPace}} min/km</h2>
     </div>
-    <div >
-      <button tuiButton [disabled]="!currentMatch" (click)="setMatch(currentMatch?.id!, true)">Let's run!</button>
-      <button tuiButton [disabled]="!currentMatch" (click)="setMatch(currentMatch?.id!, false)">Naah! </button>
+    <div class="actions">
+      <div class="icon-with-label">
+        <tui-marker-icon src="tuiIconCloseLarge" mode="error">
+
+        </tui-marker-icon>
+      </div>
+      <div class="icon-with-label">
+        <tui-marker-icon src="tuiIconCheckLarge" mode="success">
+
+        </tui-marker-icon>
+      </div>
     </div>
   </ng-container>
 </div>

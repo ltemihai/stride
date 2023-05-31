@@ -4,7 +4,8 @@ import {Router} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ClientService} from "../services/client.service";
 import {TuiNightThemeService} from "@taiga-ui/core";
-import {Observable} from "rxjs";
+import {Observable, Subject, take} from "rxjs";
+import {TuiBrightness} from "@taiga-ui/core/types/brightness";
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ import {Observable} from "rxjs";
 })
 export class AppComponent {
   title = 'Stride';
-  menuState: 'in' | 'out' = 'in';
+
+  theme$: Subject<TuiBrightness> = new Subject<TuiBrightness>()
 
   isLoggedIn = false;
 
@@ -36,9 +38,15 @@ export class AppComponent {
     this.router.events.subscribe(() => {
       this.isLoggedIn = this.appwriteService.isUserAuthorized;
     })
+
+    this.night$.pipe(take(1)).subscribe(theme => {
+      this.theme$.next(theme ? 'onDark' : 'onLight');
+    })
   }
 
-  onShowMenu() {
-    this.menuState = this.menuState === 'out' ? 'in' : 'out';
+  changeTheme(currentTheme: TuiBrightness) {
+    this.theme$.next(currentTheme === 'onDark' ? 'onLight' : 'onDark')
   }
+
+
 }

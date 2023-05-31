@@ -14,4 +14,14 @@
     justify-content: space-between ;
     width: 100%;
   }
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .tui-marker-icon {
+    background: darkgreen;
+  }
 }

@@ -1,12 +1,13 @@
 
-<tui-root *tuiLet="night$ | async as night"
-          [tuiMode]="night ? 'onDark' : null">
-  <tui-theme-night *ngIf="night"></tui-theme-night>
+<tui-root *tuiLet="theme$ | async as theme"
+          [tuiMode]="theme">
+  <tui-theme-night *ngIf="theme === 'onDark'"></tui-theme-night>
   <div class="page">
-      <app-header></app-header>
+      <app-header [theme]="theme!" (onThemeChanged)="changeTheme(theme!)"></app-header>
       <div class="content">
         <router-outlet></router-outlet>
       </div>
       <app-footer class="footer" *ngIf="isLoggedIn"></app-footer>
   </div>
 </tui-root>
+

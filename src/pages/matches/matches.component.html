@@ -1,7 +1,9 @@
 <div class="page">
-    <div class="item__content" *ngFor="let item of matches | async;">
+  <div class="grid">
+    <div class="grid_item" *ngFor="let item of matches | async;">
       <img [src]="item.avatarUrl" alt="avatarUrl" class="item__title">
       <div class="item__subtitle">{{ item.displayName }}</div>
       <div class="item__description">{{ item.birthday }}</div>
     </div>
+  </div>
 </div>
