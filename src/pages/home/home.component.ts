@@ -41,6 +41,8 @@ export class HomeComponent implements OnInit {
     currentPace: string,
   } | null = null;
 
+  public isMatching = false;
+
   constructor(private readonly userService: UserService,
               private readonly likesService: LikesService,
               private readonly alertService: AlertService,
@@ -79,6 +81,7 @@ export class HomeComponent implements OnInit {
     });
   }
   setMatch(matchId: string, isMatch: boolean) {
+    this.isMatching = true;
     this.userService.getAccount().then((account) => {
       this.likesService.like(matchId, account['$id'], isMatch)
         .then(() => {
@@ -86,10 +89,13 @@ export class HomeComponent implements OnInit {
           if (isMatch) {
             this.alertService.success('It\'s a match!');
           }
-
+          this.isMatching = false;
           this.cdr.detectChanges();
         })
-        .catch(() => this.alertService.error('Something went wrong!'))
+        .catch(() => {
+          this.isMatching = false;
+          this.alertService.error('Something went wrong!')
+        })
     })
   }
 }

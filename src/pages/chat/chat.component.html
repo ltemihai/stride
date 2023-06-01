@@ -12,7 +12,7 @@
     <tui-input [(ngModel)]="message" class="">
       <input tuiTextfield [placeholder]="'Send a message'"  />
     </tui-input>
-    <tui-marker-icon src="tuiIconSendLarge" mode="primary" (click)="sendMessage()">
+    <tui-marker-icon src="tuiIconSendLarge" [mode]="message ? 'primary' : 'white' " (click)="sendMessage()">
 
     </tui-marker-icon>
   </div>

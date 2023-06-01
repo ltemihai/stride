@@ -1,5 +1,5 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MatchesService} from "../../services/matches.service";
 import {ActivatedRoute} from "@angular/router";
 import {Observable, Subject, switchMap, tap} from "rxjs";
@@ -33,6 +33,11 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.messages$ = this.chatService.messages$;
+    this.messages$.pipe(tap(() => {
+      if (this.chat?.length) {
+        this.chat[this.chat.length - 1].nativeElement.scrollIntoView();
+      }
+    }))
     this.match$ = this.route.params.pipe(
       tap(params => {
         this.receiverId = params['id'];
