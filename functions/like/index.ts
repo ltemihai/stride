@@ -8,7 +8,7 @@ const match = async (options: {
 }) => {
 
   const DATABASE_ID = '64627a4a87730c2c4fd1';
-  const MATCHES_COLLECTION_ID = '64627a793235eaf0d9f1';
+  const MATCHES_COLLECTION_ID = '6478ff9a315fb2844546';
 
 
   const client = new Client();
