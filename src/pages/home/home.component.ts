@@ -5,12 +5,12 @@ import {UserService} from "../../services/user.service";
 import {LikesService} from "../../services/likes.service";
 import {AlertService} from "../../services/alert.service";
 import {AppwriteService} from "../../services/appwrite.service";
-import {TuiMarkerIconModule} from "@taiga-ui/kit";
+import {TuiIslandModule, TuiMarkerIconModule} from "@taiga-ui/kit";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TuiButtonModule, NgOptimizedImage, TuiMarkerIconModule],
+  imports: [CommonModule, TuiButtonModule, NgOptimizedImage, TuiMarkerIconModule, TuiIslandModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

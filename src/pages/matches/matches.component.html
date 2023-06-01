@@ -1,9 +1,11 @@
 <div class="page">
   <div class="grid">
     <div class="grid_item" *ngFor="let item of matches | async;" (click)="openChat(item.id)">
-      <img [src]="item.avatarUrl" alt="avatarUrl" class="item__title">
-      <div class="item__subtitle">{{ item.displayName }}</div>
-      <div class="item__description">{{ item.birthday }}</div>
+      <tui-island>
+        <img [src]="item.avatarUrl" alt="avatarUrl" class="item__title">
+        <div class="item__subtitle">{{ item.displayName }}</div>
+        <div class="item__description">{{ item.birthday }}</div>
+      </tui-island>
     </div>
   </div>
 </div>

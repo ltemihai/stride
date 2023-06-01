@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AppwriteService} from "./appwrite.service";
-import {concatAll, filter, forkJoin, map, merge, Observable, of, Subject, switchAll, switchMap, tap} from "rxjs";
+import {forkJoin, map, of, Subject, switchMap} from "rxjs";
 import {UserService} from "./user.service";
 import {APPWRITE_COLLECTION_MESSAGES_ID, APPWRITE_DATABASE_ID} from "../consts/appwrite.consts";
 import {ID, Query} from "appwrite";
@@ -29,12 +29,16 @@ export class ChatService {
         fromPromise(this.appwriteService.databases.listDocuments(
           APPWRITE_DATABASE_ID,
           APPWRITE_COLLECTION_MESSAGES_ID,
-          [Query.equal('senderId', account['$id']), Query.orderDesc('timestamp')]
+          [Query.equal('senderId', account['$id']),
+            Query.equal('receiverId', receiverId),
+            Query.orderDesc('timestamp')]
         )),
         fromPromise(this.appwriteService.databases.listDocuments(
           APPWRITE_DATABASE_ID,
           APPWRITE_COLLECTION_MESSAGES_ID,
-          [Query.equal('senderId', receiverId), Query.orderDesc('timestamp')]
+          [Query.equal('senderId', receiverId),
+            Query.equal('receiverId', account['$id']),
+            Query.orderDesc('timestamp')]
         ))
       )
       .pipe(
@@ -64,7 +68,7 @@ export class ChatService {
 
   public subscribeToChatEvents(receiverId: string) {
     if (!this.isSubscribed) {
-      this.clientService.client.subscribe(`databases.${APPWRITE_DATABASE_ID}.collections.${APPWRITE_COLLECTION_MESSAGES_ID}.documents`, (what) => {
+      this.clientService.client.subscribe(`databases.${APPWRITE_DATABASE_ID}.collections.${APPWRITE_COLLECTION_MESSAGES_ID}.documents`, (_) => {
         this.getMessages(receiverId);
       });
       this.isSubscribed = true;

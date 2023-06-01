@@ -1,31 +1,33 @@
 <div class="page">
   <ng-container *ngIf="isLoaded">
-    <div class="body" *ngIf="currentMatch; else noMatchesAvailable">
-      <div style="display: flex; justify-content: center; flex-direction: row">
-        <img [src]="currentMatch.avatarUrl" alt="avatarUrl">
-      </div>
+    <tui-island>
+      <div class="body" *ngIf="currentMatch; else noMatchesAvailable">
+        <div style="display: flex; justify-content: center; flex-direction: row">
+          <img [src]="currentMatch.avatarUrl" alt="avatarUrl">
+        </div>
 
-      <div class="row">
-        <h1 class="name">{{currentMatch.displayName}}</h1>
-        <h1 class="age">{{currentMatch.age}}</h1>
+        <div class="row">
+          <h1 class="name">{{currentMatch.displayName}}</h1>
+          <h1 class="age">{{currentMatch.age}}</h1>
+        </div>
+        <h2>{{currentMatch.location}}</h2>
+        <h2>Target: {{currentMatch.target}}</h2>
+        <h2>Longest Run: {{currentMatch.longestRun}} km</h2>
+        <h2>Pace: {{currentMatch.currentPace}} min/km</h2>
       </div>
-      <h2>{{currentMatch.location}}</h2>
-      <h2>Target: {{currentMatch.target}}</h2>
-      <h2>Longest Run: {{currentMatch.longestRun}} km</h2>
-      <h2>Pace: {{currentMatch.currentPace}} min/km</h2>
-    </div>
-    <div class="actions" *ngIf="currentMatch">
-      <div class="icon-with-label">
-        <tui-marker-icon src="tuiIconCloseLarge" [mode]="isMatching ? 'white' : 'error'" (click)="setMatch(currentMatch?.id!, false)">
+      <div class="actions" *ngIf="currentMatch">
+        <div class="icon-with-label">
+          <tui-marker-icon src="tuiIconCloseLarge" [mode]="isMatching ? 'white' : 'error'" (click)="setMatch(currentMatch?.id!, false)">
 
-        </tui-marker-icon>
-      </div>
-      <div class="icon-with-label">
-        <tui-marker-icon src="tuiIconCheckLarge" [mode]="isMatching ? 'white' : 'success'" (click)="setMatch(currentMatch?.id!, true)">
+          </tui-marker-icon>
+        </div>
+        <div class="icon-with-label">
+          <tui-marker-icon src="tuiIconCheckLarge" [mode]="isMatching ? 'white' : 'success'" (click)="setMatch(currentMatch?.id!, true)">
 
-        </tui-marker-icon>
+          </tui-marker-icon>
+        </div>
       </div>
-    </div>
+    </tui-island>
   </ng-container>
 </div>
 

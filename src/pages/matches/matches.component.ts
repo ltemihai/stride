@@ -4,11 +4,12 @@ import {UserService} from "../../services/user.service";
 import {MatchesService} from "../../services/matches.service";
 import {TuiButtonModule, TuiDataListModule} from "@taiga-ui/core";
 import {Router} from "@angular/router";
+import {TuiIslandModule} from "@taiga-ui/kit";
 
 @Component({
   selector: 'app-matches',
   standalone: true,
-  imports: [CommonModule, TuiButtonModule, TuiDataListModule],
+  imports: [CommonModule, TuiButtonModule, TuiDataListModule, TuiIslandModule],
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
