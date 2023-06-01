@@ -3,13 +3,13 @@
     <img [src]="match.avatarUrl">
     <h3>{{match.displayName}}</h3>
   </div>
-  <div class="messages">
+  <div class="messages" #messages>
     <tui-island *ngFor="let mess of messages$ | async" [textAlign]="mess['receiverId'] === receiverId ? 'right' : 'left'">
       {{mess['message']}}
     </tui-island>
   </div>
   <div class="footer">
-    <tui-input [(ngModel)]="message" class="tui-row tui-form__header_margin-bottom_small">
+    <tui-input [(ngModel)]="message" class="">
       <input tuiTextfield [placeholder]="'Send a message'"  />
     </tui-input>
     <tui-marker-icon src="tuiIconSendLarge" mode="primary" (click)="sendMessage()">

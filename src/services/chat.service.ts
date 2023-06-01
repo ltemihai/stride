@@ -14,7 +14,7 @@ export class ChatService {
 
   isSubscribed = false;
 
-  messages!: Observable<any>
+  messages$: Subject<any> = new Subject<any>();
   userId!: string
   constructor(readonly appwriteService: AppwriteService,
               readonly clientService: ClientService,
@@ -25,7 +25,7 @@ export class ChatService {
   getMessages(receiverId: string) {
     this.userService.getAccount().then((account) => {
       this.userId = account['$id'];
-      this.messages = forkJoin(
+      forkJoin(
         fromPromise(this.appwriteService.databases.listDocuments(
           APPWRITE_DATABASE_ID,
           APPWRITE_COLLECTION_MESSAGES_ID,
@@ -42,8 +42,9 @@ export class ChatService {
           return of(senderMessages.documents.concat(receiverMessages.documents))
         }),
         map((messages) => messages.sort((a,b) => a['timestamp'] > b['timestamp'] ? 1: -1)),
-        tap(messages => console.log(messages))
-      )
+      ).subscribe((x) => {
+          this.messages$.next(x)
+      })
     })
   }
 
