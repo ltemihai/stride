@@ -1,0 +1,19 @@
+<div *ngIf="match$ | async as match " class="page">
+  <div class="header">
+    <img [src]="match.avatarUrl">
+    <h3>{{match.displayName}}</h3>
+  </div>
+  <div class="messages">
+    <tui-island *ngFor="let mess of messages$ | async" [textAlign]="mess['receiverId'] === receiverId ? 'left' : 'right'">
+      Hellooo!
+    </tui-island>
+  </div>
+  <div class="footer">
+    <tui-input [(ngModel)]="message" class="tui-row tui-form__header_margin-bottom_small">
+      <input tuiTextfield [placeholder]="'Send a message'"  />
+    </tui-input>
+    <tui-marker-icon src="tuiIconSendLarge" mode="primary" (click)="sendMessage()">
+
+    </tui-marker-icon>
+  </div>
+</div>
