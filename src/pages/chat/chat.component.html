@@ -4,8 +4,8 @@
     <h3>{{match.displayName}}</h3>
   </div>
   <div class="messages">
-    <tui-island *ngFor="let mess of messages$ | async" [textAlign]="mess['receiverId'] === receiverId ? 'left' : 'right'">
-      Hellooo!
+    <tui-island *ngFor="let mess of messages$ | async" [textAlign]="mess['receiverId'] === receiverId ? 'right' : 'left'">
+      {{mess['message']}}
     </tui-island>
   </div>
   <div class="footer">

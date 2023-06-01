@@ -13,6 +13,10 @@ img {
   display: flex;
 }
 
+.messages {
+  max-height: 52vh;
+}
+
 .footer {
   position: absolute;
   bottom: 100px;
@@ -20,6 +24,17 @@ img {
   display: flex;
   tui-input {
     width: 77%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+
+@media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ }
+@media (min-width:600px)  {
+  tui-input {
+    width: 70%;
     margin-left: 1rem;
     margin-right: 1rem;
   }

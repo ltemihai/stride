@@ -61,7 +61,7 @@ export class MatchesService {
   }
 
   public subscribeToMatchesEvents() {
-    this.clientService.client.subscribe(`databases.${APPWRITE_DATABASE_ID}.collections.${APPWRITE_MATCHES_ID}.documents`, (_) => {
+    this.clientService.client.subscribe(`databases.${APPWRITE_DATABASE_ID}.collections.${APPWRITE_MATCHES_ID}.documents`, (matches) => {
       this.getMatches();
     });
   }
