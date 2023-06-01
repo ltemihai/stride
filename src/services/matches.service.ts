@@ -12,7 +12,7 @@ import {fromPromise} from "rxjs/internal/observable/innerFrom";
 })
 export class MatchesService {
 
-  matches: Subject<any[]> = new Subject<any[]>()
+  matches$: Subject<any[]> = new Subject<any[]>()
   constructor(private clientService: ClientService,
               private userService: UserService,
               private appwriteService: AppwriteService) {
@@ -31,7 +31,7 @@ export class MatchesService {
             APPWRITE_COLLECTION_USER_PREFS_ID,
             [Query.equal('$id', matchesIds)]
           ).then(users => {
-            this.matches.next(users.documents.map(user => {
+            this.matches$.next(users.documents.map(user => {
               return {
                 id: user['$id'],
                 displayName: user['displayName'],

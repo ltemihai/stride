@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
     this.appwriteService.account.deleteSessions().then(() => {
       localStorage.clear();
       this.appwriteService.isUserAuthorized = false;
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']).then(x => location.reload())
     });
   }
 

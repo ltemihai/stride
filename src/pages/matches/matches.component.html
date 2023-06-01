@@ -1,11 +1,18 @@
 <div class="page">
-  <div class="grid">
-    <div class="grid_item" *ngFor="let item of matches | async;" (click)="openChat(item.id)">
+  <div class="grid" *ngIf="matches$ | async as matches; else noMatches">
+    <div class="grid_item" *ngFor="let item of matches" (click)="openChat(item.id)">
       <tui-island>
-        <img [src]="item.avatarUrl" alt="avatarUrl" class="item__title">
-        <div class="item__subtitle">{{ item.displayName }}</div>
-        <div class="item__description">{{ item.birthday }}</div>
+        <img [src]="item['avatarUrl']" alt="avatarUrl" class="item__title">
+        <div class="item__subtitle">{{ item['displayName'] }}</div>
+        <div class="item__description">{{ item['birthday'] }}</div>
       </tui-island>
     </div>
   </div>
 </div>
+
+<ng-template #noMatches>
+  <tui-island>
+    <p>No matches :(</p>
+    <p>Keep running!</p>
+  </tui-island>
+</ng-template>

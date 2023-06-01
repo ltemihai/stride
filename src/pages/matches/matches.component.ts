@@ -5,6 +5,7 @@ import {MatchesService} from "../../services/matches.service";
 import {TuiButtonModule, TuiDataListModule} from "@taiga-ui/core";
 import {Router} from "@angular/router";
 import {TuiIslandModule} from "@taiga-ui/kit";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-matches',
@@ -16,7 +17,7 @@ import {TuiIslandModule} from "@taiga-ui/kit";
 })
 export class MatchesComponent implements OnInit {
 
-  protected matches = [] as any;
+  protected matches$ = new Subject<any[]>()
 
   constructor(private userService: UserService,
               private router: Router,
@@ -24,7 +25,7 @@ export class MatchesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.matches = this.matchesService.matches;
+    this.matches$ = this.matchesService.matches$;
     this.matchesService.getMatches();
     this.matchesService.subscribeToMatchesEvents();
   }

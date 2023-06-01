@@ -60,8 +60,8 @@ export class HomeComponent implements OnInit {
 
   getMatches() {
     this.userService.getAccount().then((account) => {
-      this.likesService.getPotentialMatches(account['$id']).then((matches) => {
-        this.potentialMatches = matches.documents.map(x => {
+      this.likesService.getPotentialMatches(account['$id']).subscribe((matches) => {
+        this.potentialMatches = matches.map(x => {
           return {
             avatarUrl: this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', x['avatarUrl']).href,
             displayName: x["displayName"],
@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit {
             currentPace: x["currentPace"],
           }
         });
+        console.log(this.potentialMatches);
         this.currentMatch = this.potentialMatches.pop() || null;
         this.isLoaded = true;
         this.cdr.detectChanges();
