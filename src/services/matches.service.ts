@@ -37,13 +37,13 @@ export class MatchesService {
       ]
       ).pipe(
         map(([liked, likedBy]) => {
-          console.log(liked, likedBy);
+          console.log('LIKES',liked, likedBy);
           return liked.documents.filter(x => {
-            !!likedBy.documents.find(y => y['matcherId'] === x['matchId'] && x['matchId'] === y['matchId'])
+            return likedBy.documents.some(y => y['matcherId'] === x['matchId'] && x['matcherId'] === y['matchId'])
           })
         })
       ).subscribe((response) => {
-        console.log(response);
+        console.log('MATCHES');
         const matchesIds = response.map(x => x['matcherId']);
         this.appwriteService.databases.listDocuments(
           APPWRITE_DATABASE_ID,
