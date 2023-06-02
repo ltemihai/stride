@@ -3,10 +3,8 @@
       <div class="grid_item" *ngFor="let item of matches" (click)="openChat(item.id)">
         <tui-island>
           <img [src]="item['avatarUrl']" alt="avatarUrl" class="item__title">
-          <div class="text">
-            <div class="item__subtitle">{{ item['displayName'] }}</div>
-            <div class="item__description">{{ item['birthday'] }}</div>
-          </div>
+          <h3 class="item__subtitle">{{ item['displayName'] }}</h3>
+          <div class="item__description">{{ item['birthday'] }}</div>
         </tui-island>
       </div>
     </div>
