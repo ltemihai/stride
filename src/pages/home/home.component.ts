@@ -73,7 +73,6 @@ export class HomeComponent implements OnInit {
             currentPace: x["currentPace"],
           }
         });
-        console.log(this.potentialMatches);
         this.currentMatch = this.potentialMatches.pop() || null;
         this.isLoaded = true;
         this.cdr.detectChanges();

@@ -3,8 +3,8 @@
     <img [src]="match.avatarUrl">
     <h3>{{match.displayName}}</h3>
   </div>
-  <div class="messages" #messages>
-    <tui-island *ngFor="let mess of messages$ | async" [textAlign]="mess['receiverId'] === receiverId ? 'right' : 'left'">
+  <div class="messages">
+    <tui-island #message *ngFor="let mess of messages$ | async" [textAlign]="mess['receiverId'] === receiverId ? 'right' : 'left'">
       {{mess['message']}}
     </tui-island>
   </div>

@@ -37,20 +37,17 @@ export class MatchesService {
       ]
       ).pipe(
         map(([liked, likedBy]) => {
-          console.log('LIKES',liked, likedBy);
           return liked.documents.filter(x => {
             return likedBy.documents.some(y => y['matcherId'] === x['matchId'] && x['matcherId'] === y['matchId'])
           })
         })
       ).subscribe((response) => {
-        console.log('MATCHES');
         const matchesIds = response.map(x => x['matcherId']);
         this.appwriteService.databases.listDocuments(
           APPWRITE_DATABASE_ID,
           APPWRITE_COLLECTION_USER_PREFS_ID,
           [Query.equal('$id', matchesIds)]
         ).then(users => {
-          console.log('prefs', users.documents);
           this.matches$.next(users.documents.map(user => {
             return {
               id: user['$id'],

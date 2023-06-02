@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatchesService} from "../../services/matches.service";
 import {ActivatedRoute} from "@angular/router";
@@ -6,6 +6,7 @@ import {Observable, Subject, switchMap, tap} from "rxjs";
 import {TuiInputModule, TuiIslandModule, TuiMarkerIconModule} from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ChatService} from "../../services/chat.service";
+import {TuiIslandComponent} from "@taiga-ui/kit/components/island/island.component";
 
 @Component({
   selector: 'app-chat',
@@ -16,7 +17,7 @@ import {ChatService} from "../../services/chat.service";
 })
 export class ChatComponent implements OnInit {
 
-  @ViewChildren('tui-island') private chat: ElementRef[] = [];
+  @ViewChildren('message', { read: ElementRef }) private chat: QueryList<ElementRef> = new QueryList<ElementRef>();
 
   match$!: Observable<any>;
   messages$: Subject<any> = new Subject<any>();
@@ -33,11 +34,9 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.messages$ = this.chatService.messages$;
-    this.messages$.pipe(tap(() => {
-      if (this.chat?.length) {
-        this.chat[this.chat.length - 1].nativeElement.scrollIntoView();
-      }
-    }))
+    this.messages$.subscribe(() => {
+      this.chat.last?.nativeElement.scrollIntoView()
+    })
     this.match$ = this.route.params.pipe(
       tap(params => {
         this.receiverId = params['id'];

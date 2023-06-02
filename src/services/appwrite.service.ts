@@ -39,7 +39,6 @@ export class AppwriteService {
     this.account.createJWT().then((response) => {
       this.jwt = response.jwt;
     }, (_) => {
-      console.log('Not logged in');
       localStorage.clear();
       this.isUserAuthorized = false;
     })
