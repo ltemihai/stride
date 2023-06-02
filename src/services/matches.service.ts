@@ -53,7 +53,7 @@ export class MatchesService {
               id: user['$id'],
               displayName: user['displayName'],
               avatarUrl: this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', user['avatarUrl']).href,
-              birthday: user['birthday']
+              birthday: new Date().getFullYear() - new Date(user['birthday']).getFullYear()
             }
           }));
       })
