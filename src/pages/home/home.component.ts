@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
           return {
             avatarUrl: this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', x['avatarUrl']).href,
             displayName: x["displayName"],
-            age: x["birthday"],
+            age: new Date().getFullYear() - new Date(x['birthday']).getFullYear(),
             location: x["location"],
             id: x.$id,
             target: x["target"],

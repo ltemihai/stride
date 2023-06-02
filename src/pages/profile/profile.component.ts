@@ -48,13 +48,17 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserPreferences().then((userPref) => {
       this.mapUserToForm(userPref)
+      const birthday = this.form.controls['birthday'].value?.toUtcNativeDate().valueOf();
       this.form.controls.avatarUrl.valueChanges.subscribe((value) => {
         this.appwriteService.storage.createFile('64693ceeed255ec7abf9', ID.unique(), value as File).then((result) => {
           this.userService.updatePreferences({
             ...this.form.value,
-            avatarUrl: result.$id
+            avatarUrl: result.$id,
+            birthday: birthday
           }).then((_) => {
             this.alertService.success(`You've successfully uploaded your photo!`)
+            this.form.controls['avatarUrl'].setValue(result.$id)
+            this.img = this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', result.$id).href;
           }, (_) => {
             this.alertService.error(`There was an error uploading your photo!`)
           });
