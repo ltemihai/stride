@@ -7,6 +7,7 @@ import {TuiInputModule, TuiIslandModule, TuiMarkerIconModule} from "@taiga-ui/ki
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ChatService} from "../../services/chat.service";
 import {TuiIslandComponent} from "@taiga-ui/kit/components/island/island.component";
+import {fadeInAnimation} from "../../consts/animations.consts";
 
 @Component({
   selector: 'app-chat',
@@ -14,6 +15,7 @@ import {TuiIslandComponent} from "@taiga-ui/kit/components/island/island.compone
   imports: [CommonModule, TuiInputModule, FormsModule, ReactiveFormsModule, TuiMarkerIconModule, TuiIslandModule],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class ChatComponent implements OnInit {
 

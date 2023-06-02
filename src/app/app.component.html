@@ -4,7 +4,7 @@
   <tui-theme-night *ngIf="theme === 'onDark'"></tui-theme-night>
   <div class="page">
       <app-header [theme]="theme!" (onThemeChanged)="changeTheme(theme!)"></app-header>
-      <div class="content">
+      <div class="content" [@fadeInAnimation]>
         <router-outlet></router-outlet>
       </div>
       <app-footer class="footer" *ngIf="isLoggedIn"></app-footer>

@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" [@fadeInAnimation]>
   <ng-container *ngIf="isLoaded">
     <tui-island>
       <div class="body" *ngIf="currentMatch; else noMatchesAvailable">
@@ -32,7 +32,7 @@
 </div>
 
 <ng-template #noMatchesAvailable>
-  <div class="body">
+  <div class="body" >
     <h3>No potential matches :( </h3>
   </div>
 </ng-template>

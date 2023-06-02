@@ -12,6 +12,7 @@ import {AlertService} from "../../services/alert.service";
 import {AppwriteService} from "../../services/appwrite.service";
 import {ID} from "appwrite";
 import {APPWRITE_COLLECTION_USER_PREFS_ID, APPWRITE_DATABASE_ID} from "../../consts/appwrite.consts";
+import {fadeInAnimation} from "../../consts/animations.consts";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ import {APPWRITE_COLLECTION_USER_PREFS_ID, APPWRITE_DATABASE_ID} from "../../con
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInAnimation]
 })
 export class LoginComponent {
 

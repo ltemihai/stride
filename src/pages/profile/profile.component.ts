@@ -11,6 +11,7 @@ import {AlertService} from "../../services/alert.service";
 import {TUI_LAST_DAY, TuiDay} from '@taiga-ui/cdk';
 // @ts-ignore
 import Preferences = Models.Preferences;
+import {fadeInAnimation} from "../../consts/animations.consts";
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,8 @@ import Preferences = Models.Preferences;
   imports: [CommonModule, TuiInputModule, ReactiveFormsModule, TuiButtonModule, TuiInputFilesModule, TuiAvatarModule, TuiInputDateModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInAnimation]
 })
 export class ProfileComponent implements OnInit {
 

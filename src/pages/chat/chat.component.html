@@ -1,4 +1,4 @@
-<div *ngIf="match$ | async as match " class="page">
+<div *ngIf="match$ | async as match " class="page" [@fadeInAnimation]>
   <div class="header">
     <img [src]="match.avatarUrl">
     <h3>{{match.displayName}}</h3>

@@ -6,23 +6,13 @@ import {ClientService} from "../services/client.service";
 import {TuiNightThemeService} from "@taiga-ui/core";
 import {BehaviorSubject, Observable, Subject, take} from "rxjs";
 import {TuiBrightness} from "@taiga-ui/core/types/brightness";
+import {fadeInAnimation} from "../consts/animations.consts";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        transform: 'translate3d(-100%,0,0)'
-      })),
-      state('out', style({
-        transform: 'translate3d(0, 0, 0)'
-      })),
-      transition('in => out', animate('200ms ease-in-out')),
-      transition('out => in', animate('200ms ease-in-out'))
-    ]),
-  ]
+  animations: [fadeInAnimation]
 })
 export class AppComponent implements OnInit{
   title = 'Stride';

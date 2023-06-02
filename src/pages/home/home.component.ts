@@ -6,6 +6,8 @@ import {LikesService} from "../../services/likes.service";
 import {AlertService} from "../../services/alert.service";
 import {AppwriteService} from "../../services/appwrite.service";
 import {TuiIslandModule, TuiMarkerIconModule} from "@taiga-ui/kit";
+import {fadeInAnimation} from "../../consts/animations.consts";
+
 
 @Component({
   selector: 'app-home',
@@ -13,12 +15,14 @@ import {TuiIslandModule, TuiMarkerIconModule} from "@taiga-ui/kit";
   imports: [CommonModule, TuiButtonModule, NgOptimizedImage, TuiMarkerIconModule, TuiIslandModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInAnimation]
 })
 export class HomeComponent implements OnInit {
 
   public isLoaded = false;
 
+  // @ts-ignore
   protected potentialMatches: {
     avatarUrl: string,
     displayName: string,
@@ -28,7 +32,7 @@ export class HomeComponent implements OnInit {
     target: string,
     longestRun: string,
     currentPace: string,
-  }[] = [];
+  }[];
 
   protected currentMatch: {
     avatarUrl: string,

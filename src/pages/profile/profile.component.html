@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="saveUserPreferences()">
+<form [formGroup]="form" (ngSubmit)="saveUserPreferences()" [@fadeInAnimation]>
 
   <tui-input-files formControlName="avatarUrl" *ngIf="!form.controls.avatarUrl.value" accept="image/*"  >
   </tui-input-files>

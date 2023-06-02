@@ -1,5 +1,5 @@
-
-    <div class="grid" *ngIf="matches$ | async as matches; else noMatches">
+  <div *ngIf="matches$ | async as matches;">
+    <div class="grid" *ngIf="matches.length; else noMatches" [@fadeInAnimation]>
       <div class="grid_item" *ngFor="let item of matches" (click)="openChat(item.id)">
         <tui-island>
           <img [src]="item['avatarUrl']" alt="avatarUrl" class="item__title">
@@ -8,6 +8,8 @@
         </tui-island>
       </div>
     </div>
+  </div>
+
 
 <ng-template #noMatches>
   <tui-island>

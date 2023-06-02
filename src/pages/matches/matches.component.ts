@@ -6,6 +6,7 @@ import {TuiButtonModule, TuiDataListModule} from "@taiga-ui/core";
 import {Router} from "@angular/router";
 import {TuiIslandModule} from "@taiga-ui/kit";
 import {Subject} from "rxjs";
+import {fadeInAnimation} from "../../consts/animations.consts";
 
 @Component({
   selector: 'app-matches',
@@ -13,7 +14,8 @@ import {Subject} from "rxjs";
   imports: [CommonModule, TuiButtonModule, TuiDataListModule, TuiIslandModule],
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInAnimation]
 })
 export class MatchesComponent implements OnInit {
 
