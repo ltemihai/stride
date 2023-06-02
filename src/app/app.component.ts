@@ -1,10 +1,10 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {AppwriteService} from "../services/appwrite.service";
 import {Router} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ClientService} from "../services/client.service";
 import {TuiNightThemeService} from "@taiga-ui/core";
-import {Observable, Subject, take} from "rxjs";
+import {BehaviorSubject, Observable, Subject, take} from "rxjs";
 import {TuiBrightness} from "@taiga-ui/core/types/brightness";
 
 @Component({
@@ -24,28 +24,27 @@ import {TuiBrightness} from "@taiga-ui/core/types/brightness";
     ]),
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Stride';
 
-  theme$: Subject<TuiBrightness> = new Subject<TuiBrightness>()
+  theme$: BehaviorSubject<TuiBrightness> = new BehaviorSubject<TuiBrightness>('onDark')
 
   isLoggedIn = false;
 
   constructor(readonly appwriteService: AppwriteService,
-              @Inject(TuiNightThemeService) readonly night$: Observable<boolean>,
               private router: Router, private clientService: ClientService) {
     this.isLoggedIn = this.appwriteService.isUserAuthorized;
     this.router.events.subscribe(() => {
       this.isLoggedIn = this.appwriteService.isUserAuthorized;
     })
-
-    this.night$.pipe(take(1)).subscribe(theme => {
-      this.theme$.next(theme ? 'onDark' : 'onLight');
-    })
   }
 
   changeTheme(currentTheme: TuiBrightness) {
     this.theme$.next(currentTheme === 'onDark' ? 'onLight' : 'onDark')
+  }
+
+  ngOnInit(): void {
+    this.theme$.next('onDark');
   }
 
 
