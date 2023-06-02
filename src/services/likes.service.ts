@@ -6,7 +6,7 @@ import {
   APPWRITE_DATABASE_ID,
   APPWRITE_FUNCTION_LIKE_ID, APPWRITE_MATCHES_ID
 } from "../consts/appwrite.consts";
-import {forkJoin, map} from "rxjs";
+import {forkJoin, map, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -28,16 +28,11 @@ export class LikesService {
         .listDocuments(
           APPWRITE_DATABASE_ID,
           APPWRITE_MATCHES_ID,
-          [Query.equal('matchId', accountId)]
+          [Query.equal('matcherId', accountId)]
         )
-    ]).pipe(map((result) => {
-        const potentialMatches = result[0].documents;
-        const actualMatches = result[1].documents.map(x => x['matcherId']);
-
-        console.log(potentialMatches, actualMatches);
-
-        return potentialMatches.filter(match => {
-          return !actualMatches.includes(match['$id'])
+    ]).pipe(map(([potentialMatches, actualMatches]) => {
+        return potentialMatches.documents.filter(x => {
+          return !actualMatches.documents.some(y => y['matchId'] === x['$id'])
         });
       }
     ))

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ClientService} from "./client.service";
-import {map, Subject} from "rxjs";
+import {filter, forkJoin, map, Subject} from "rxjs";
 import {AppwriteService} from "./appwrite.service";
 import {Query} from "appwrite";
 import {UserService} from "./user.service";
@@ -21,28 +21,47 @@ export class MatchesService {
 
   public getMatches() {
     this.userService.getAccount().then((account) => {
-      this.appwriteService.databases.listDocuments(APPWRITE_DATABASE_ID,
-        APPWRITE_MATCHES_ID,
-        [Query.equal('matchId', account['$id'])])
-        .then((response) => {
-          const matchesIds = response.documents.map(x => x['matcherId']);
-          this.appwriteService.databases.listDocuments(
-            APPWRITE_DATABASE_ID,
-            APPWRITE_COLLECTION_USER_PREFS_ID,
-            [Query.equal('$id', matchesIds)]
-          ).then(users => {
-            this.matches$.next(users.documents.map(user => {
-              return {
-                id: user['$id'],
-                displayName: user['displayName'],
-                avatarUrl: this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', user['avatarUrl']).href,
-                birthday: user['birthday']
-              }
-            }));
+      forkJoin([
+          fromPromise(
+            this.appwriteService.databases.listDocuments(APPWRITE_DATABASE_ID,
+              APPWRITE_MATCHES_ID,
+              [Query.equal('matchId', account['$id']),
+                Query.equal('isLiked', true)])
+          ),
+          fromPromise(
+            this.appwriteService.databases.listDocuments(APPWRITE_DATABASE_ID,
+              APPWRITE_MATCHES_ID,
+              [Query.equal('matcherId', account['$id']),
+                Query.equal('isLiked', true)])
+          ),
+      ]
+      ).pipe(
+        map(([liked, likedBy]) => {
+          console.log(liked, likedBy);
+          return liked.documents.filter(x => {
+            !!likedBy.documents.find(y => y['matcherId'] === x['matchId'] && x['matchId'] === y['matchId'])
           })
-      });
+        })
+      ).subscribe((response) => {
+        console.log(response);
+        const matchesIds = response.map(x => x['matcherId']);
+        this.appwriteService.databases.listDocuments(
+          APPWRITE_DATABASE_ID,
+          APPWRITE_COLLECTION_USER_PREFS_ID,
+          [Query.equal('$id', matchesIds)]
+        ).then(users => {
+          console.log('prefs', users.documents);
+          this.matches$.next(users.documents.map(user => {
+            return {
+              id: user['$id'],
+              displayName: user['displayName'],
+              avatarUrl: this.appwriteService.storage.getFilePreview('64693ceeed255ec7abf9', user['avatarUrl']).href,
+              birthday: user['birthday']
+            }
+          }));
+      })
     })
-
+  })
   }
 
   public getUserPref(id: string) {
