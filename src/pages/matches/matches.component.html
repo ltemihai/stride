@@ -1,12 +1,13 @@
   <div *ngIf="matches$ | async as matches;" class="page">
-    <div class="grid" *ngIf="matches.length; else noMatches" [@fadeInAnimation]>
-      <div class="grid_item" *ngFor="let item of matches" (click)="openChat(item.id)">
-        <tui-island class="shadow">
+    <div class="grid" *ngIf="matches.length; else noMatches" [@fadeInAnimation]
+         [ngStyle]="matches.length > 2 ? {'justify-content': 'center'} : {}">
+      <ng-container *ngFor="let item of matches">
+        <tui-island class="shadow" (click)="openChat(item.id)">
           <img [src]="item['avatarUrl']" alt="avatarUrl" class="item__title">
           <h3 class="item__subtitle">{{ item['displayName'] }}</h3>
           <div class="item__description">{{ item['birthday'] }}</div>
         </tui-island>
-      </div>
+      </ng-container>
     </div>
   </div>
 

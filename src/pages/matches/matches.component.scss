@@ -5,9 +5,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(135px, 135px));
   grid-gap: 10px;
   padding: 10px;
+  align-items: stretch;
+}
+
+.grid_item {
+
 }
 
 h3 {
@@ -30,12 +35,12 @@ img {
 /* Define different grid configurations for different screen sizes */
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(135px, 135px));
   }
 }
 
 @media (max-width: 480px) {
   .grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(135px, 135px));
   }
 }
