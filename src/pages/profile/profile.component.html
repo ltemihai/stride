@@ -5,38 +5,39 @@
   <tui-avatar class="shadow" *ngIf="form.controls.avatarUrl.value" [avatarUrl]="img">
   </tui-avatar>
 
-  <h1>Basic Info</h1>
-  <tui-input formControlName="displayName">
-    Display Name
-    <input tuiTextfield />
-  </tui-input>
-  <tui-input-date formControlName="birthday">
-    Age
-  </tui-input-date>
-  <tui-input formControlName="location">
-    Location
-    <input tuiTextfield type="text"/>
-  </tui-input>
+  <div class="content">
+    <h1>Basic Info</h1>
+    <tui-input formControlName="displayName">
+      Display Name
+      <input tuiTextfield />
+    </tui-input>
+    <tui-input-date formControlName="birthday">
+      Age
+    </tui-input-date>
+    <tui-input formControlName="location">
+      Location
+      <input tuiTextfield type="text"/>
+    </tui-input>
 
-  <h1>Running info</h1>
-  <tui-input formControlName="longestRun">
-    Longest Run (KM)
-    <input tuiTextfield />
-  </tui-input>
-  <tui-input formControlName="currentPace">
-    Current Pace (min/KM)
-    <input tuiTextfield type="number"/>
-  </tui-input>
-  <tui-input formControlName="target">
-    What's your objective?
-    <input tuiTextfield type="text"/>
-  </tui-input>
-
-  <div class="buttons">
-    <button tuiButton type="submit" class="shadow">
-      Save profile
-    </button>
-    <h3 (click)="signOut()">Sign out</h3>
+    <h1>Running info</h1>
+    <tui-input formControlName="longestRun">
+      Longest Run (KM)
+      <input tuiTextfield />
+    </tui-input>
+    <tui-input formControlName="currentPace">
+      Current Pace (min/KM)
+      <input tuiTextfield type="number"/>
+    </tui-input>
+    <tui-input formControlName="target">
+      What's your objective?
+      <input tuiTextfield type="text"/>
+    </tui-input>
+    <div class="buttons">
+      <button tuiButton type="submit" class="shadow">
+        Save profile
+      </button>
+      <h3 (click)="signOut()">Sign out</h3>
+    </div>
   </div>
 
 </form>

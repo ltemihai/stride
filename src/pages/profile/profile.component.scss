@@ -18,6 +18,21 @@ tui-input-date {
   }
 }
 
+.content {
+  max-height: 59vh;
+  overflow-y: auto;
+}
+
+tui-input-files {
+  display: flex;
+  align-content: center;
+  width: 10rem !important;
+  height: 10rem !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
 tui-avatar {
   margin-left: auto;
   margin-right: auto;

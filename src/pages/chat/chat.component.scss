@@ -5,7 +5,7 @@ img {
 }
 
 .page {
-  width: 100%;
+  margin-top: 1rem;
 }
 
 h3 {
@@ -14,23 +14,22 @@ h3 {
 }
 
 .header {
-  position: absolute;
-  top: 100px;
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .messages {
-  max-height: 52vh;
+  max-height: 56vh;
+  overflow-y: auto;
+  margin-bottom: 1rem;
 }
 
 .footer {
-  position: absolute;
-  bottom: 100px;
   width: 100%;
   display: flex;
   tui-input {
-    min-width: 77%;
+    min-width: 80%;
   }
   tui-marker-icon {
     margin-left: 0.5rem;
@@ -39,20 +38,3 @@ h3 {
 }
 
 
-@media (max-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
-@media (max-width:480px)  { /* smartphones, Android phones, landscape iPhone */ }
-@media (max-width:600px)  {
-  tui-input {
-    width: 70%;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
-  .footer {
-    width: 90% !important;
-  }
-
-  .messages {
-    max-height: 46vh;
-  }
-}
