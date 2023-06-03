@@ -9,11 +9,14 @@
     </tui-island>
   </div>
   <div class="footer">
-    <tui-input [(ngModel)]="message" class="">
+    <tui-input [(ngModel)]="message" (keyup.enter)="sendMessage()">
       <input tuiTextfield [placeholder]="'Send a message'"  />
     </tui-input>
-    <tui-marker-icon src="tuiIconSendLarge" [mode]="message ? 'primary' : 'white' " (click)="sendMessage()">
+    <div>
+      <tui-marker-icon src="tuiIconSendLarge" [mode]="message ? 'primary' : 'white' "
+                       (click)="sendMessage()">
 
-    </tui-marker-icon>
+      </tui-marker-icon>
+    </div>
   </div>
 </div>

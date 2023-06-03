@@ -8,11 +8,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ChatService} from "../../services/chat.service";
 import {TuiIslandComponent} from "@taiga-ui/kit/components/island/island.component";
 import {fadeInAnimation} from "../../consts/animations.consts";
+import {TuiAutoFocusModule} from "@taiga-ui/cdk";
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, TuiInputModule, FormsModule, ReactiveFormsModule, TuiMarkerIconModule, TuiIslandModule],
+  imports: [CommonModule, TuiInputModule, FormsModule, ReactiveFormsModule, TuiMarkerIconModule, TuiIslandModule, TuiAutoFocusModule],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
   animations: [fadeInAnimation]
