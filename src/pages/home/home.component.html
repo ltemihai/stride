@@ -1,6 +1,6 @@
 <div class="page" [@fadeInAnimation]>
   <ng-container *ngIf="isLoaded">
-    <tui-island>
+    <tui-island class="shadow">
       <div class="body" *ngIf="currentMatch; else noMatchesAvailable">
         <div style="display: flex; justify-content: center; flex-direction: row">
           <img [src]="currentMatch.avatarUrl" alt="avatarUrl">

@@ -2,7 +2,7 @@
 
   <tui-input-files formControlName="avatarUrl" *ngIf="!form.controls.avatarUrl.value" accept="image/*"  >
   </tui-input-files>
-  <tui-avatar *ngIf="form.controls.avatarUrl.value" [avatarUrl]="img">
+  <tui-avatar class="shadow" *ngIf="form.controls.avatarUrl.value" [avatarUrl]="img">
   </tui-avatar>
 
   <h1>Basic Info</h1>
@@ -33,7 +33,7 @@
   </tui-input>
 
   <div class="buttons">
-    <button tuiButton type="submit">
+    <button tuiButton type="submit" class="shadow">
       Save profile
     </button>
     <h3 (click)="signOut()">Sign out</h3>

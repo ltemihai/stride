@@ -30,9 +30,11 @@ h3 {
   width: 100%;
   display: flex;
   tui-input {
-    width: 77%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    min-width: 77%;
+  }
+  tui-marker-icon {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
 }
 
