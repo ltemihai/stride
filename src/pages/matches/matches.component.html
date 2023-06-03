@@ -1,4 +1,4 @@
-  <div *ngIf="matches$ | async as matches;">
+  <div *ngIf="matches$ | async as matches;" class="page">
     <div class="grid" *ngIf="matches.length; else noMatches" [@fadeInAnimation]>
       <div class="grid_item" *ngFor="let item of matches" (click)="openChat(item.id)">
         <tui-island class="shadow">
