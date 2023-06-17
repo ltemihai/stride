@@ -1,10 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppwriteService} from "../services/appwrite.service";
 import {Router} from "@angular/router";
-import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ClientService} from "../services/client.service";
-import {TuiNightThemeService} from "@taiga-ui/core";
-import {BehaviorSubject, Observable, Subject, take} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {TuiBrightness} from "@taiga-ui/core/types/brightness";
 import {fadeInAnimation} from "../consts/animations.consts";
 
@@ -16,6 +14,7 @@ import {fadeInAnimation} from "../consts/animations.consts";
 })
 export class AppComponent implements OnInit{
   title = 'Stride';
+
 
   theme$: BehaviorSubject<TuiBrightness> = new BehaviorSubject<TuiBrightness>('onDark')
 
