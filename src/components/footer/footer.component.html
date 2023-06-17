@@ -1,27 +1,14 @@
 <footer>
-  <div class="icon-with-label" [routerLink]="['/home']" [routerLinkActive]="['is-active']">
-    <tui-marker-icon src="tuiIconHeartLarge" mode="white">
+  <app-nav-button [route]="['/home']" [label]="'Swipe'" [icon]="'tuiIconHeartLarge'">
 
-    </tui-marker-icon>
-    <div>Swipe</div>
-  </div>
+  </app-nav-button>
+  <app-nav-button [route]="['/matches']" [label]="'Matches'" [icon]="'tuiIconHeartLarge'">
 
-  <div class="icon-with-label" [routerLink]="['/matches']" [routerLinkActive]="['is-active']">
-    <tui-marker-icon src="tuiIconUsersLarge" mode="white">
+  </app-nav-button>
+  <app-nav-button [route]="['/groups']" [label]="'Groups'" [icon]="'tuiIconListLarge'">
 
-    </tui-marker-icon>
-    <div>Matches</div>
-  </div>
-  <div class="icon-with-label" [routerLink]="['/groups']" [routerLinkActive]="['is-active']">
-    <tui-marker-icon src="tuiIconListLarge" mode="white">
+  </app-nav-button>
+  <app-nav-button [route]="['/profile']" [label]="'Profile'" [icon]="'tuiIconSettingsLarge'">
 
-    </tui-marker-icon>
-    <div>Groups</div>
-  </div>
-  <div class="icon-with-label" [routerLink]="['/profile']" [routerLinkActive]="['is-active']">
-    <tui-marker-icon src="tuiIconSettingsLarge" mode="white">
-
-    </tui-marker-icon>
-    <div>Profile</div>
-  </div>
+  </app-nav-button>
 </footer>

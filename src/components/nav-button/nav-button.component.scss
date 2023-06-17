@@ -1,0 +1,17 @@
+.is-active {
+  tui-marker-icon {
+    color: #526ed3;
+  }
+}
+
+tui-marker-icon {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.icon-with-label {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
